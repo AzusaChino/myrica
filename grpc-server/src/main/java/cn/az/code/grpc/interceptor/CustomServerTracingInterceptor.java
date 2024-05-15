@@ -9,8 +9,8 @@ import java.util.Set;
 
 import com.google.common.collect.ImmutableMap;
 
-import cn.az.code.grpc.support.OpenTracingContextKey;
-import cn.az.code.grpc.support.OperationNameConstructor;
+import cn.az.code.grpc.support.tracing.OpenTracingContextKey;
+import cn.az.code.grpc.support.tracing.OperationNameConstructor;
 import io.grpc.BindableService;
 import io.grpc.ClientCall;
 import io.grpc.Context;
@@ -29,7 +29,7 @@ import io.opentracing.propagation.Format;
 import io.opentracing.propagation.TextMapAdapter;
 
 /**
- * @author ycpang
+ * @author haru
  * @since 2021-09-15 11:20
  */
 public class CustomServerTracingInterceptor implements ServerInterceptor {

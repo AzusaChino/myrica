@@ -1,0 +1,7 @@
+version: "3"
+
+tasks:
+  lib:
+    cmds:
+      - cd jni-server/libmyrica
+      - mkdir -p build && cd build && make ../ && make install

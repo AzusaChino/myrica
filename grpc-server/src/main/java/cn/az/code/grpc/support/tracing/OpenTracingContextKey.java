@@ -1,4 +1,4 @@
-package cn.az.code.grpc.support;
+package cn.az.code.grpc.support.tracing;
 
 import io.grpc.Context;
 import io.opentracing.Span;
@@ -7,10 +7,13 @@ import io.opentracing.Span;
  * A Context key for the current OpenTracing trace state. Can be used to get the
  * active span, or to set the active span for a scoped unit of work.
  *
- * @author ycpang
+ * @author haru
  * @since 2021-09-15 12:09
  */
 public class OpenTracingContextKey {
+
+    private OpenTracingContextKey() {
+    }
 
     public static final String KEY_NAME = "io.opentracing.active-span";
     private static final Context.Key<Span> KEY = Context.key(KEY_NAME);

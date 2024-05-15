@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: myrica-grpc-server

@@ -7,7 +7,7 @@
   <parent>
     <groupId>cn.az.code</groupId>
     <artifactId>myrica</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <relativePath/>
   </parent>
 
@@ -16,6 +16,10 @@
   <description>gRPC demo</description>
 
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.grpc</groupId>
       <artifactId>grpc-netty-shaded</artifactId>

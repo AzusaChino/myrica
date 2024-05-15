@@ -5,13 +5,13 @@
   <parent>
     <artifactId>spring-boot-starter-parent</artifactId>
     <groupId>org.springframework.boot</groupId>
-    <version>3.2.2</version>
+    <version>3.2.5</version>
     <relativePath />
   </parent>
 
   <groupId>cn.az.code</groupId>
   <artifactId>myrica</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -21,16 +21,15 @@
   </modules>
 
   <properties>
-    <java.version>17</java.version>
+    <java.version>21</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <spring-cloud.version>2021.0.3</spring-cloud.version>
-    <grpc.version>1.40.0</grpc.version>
-    <protobuf.version>3.17.2</protobuf.version>
-    <protoc.version>3.17.2</protoc.version>
-    <jaeger-client.version>1.6.0</jaeger-client.version>
+    <spring-cloud.version>2023.0.0</spring-cloud.version>
+    <grpc.version>1.63.0</grpc.version>
+    <protobuf-util.version>4.26.0</protobuf-util.version>
+    <jaeger-client.version>1.8.0</jaeger-client.version>
     <opentracing.version>0.33.0</opentracing.version>
-    <commons-io.version>2.11.0</commons-io.version>
+    <commons-io.version>2.16.0</commons-io.version>
     <native.maven.plugin.version>0.9.23</native.maven.plugin.version>
   </properties>
 
@@ -76,7 +75,7 @@
       <dependency>
         <groupId>com.google.protobuf</groupId>
         <artifactId>protobuf-java-util</artifactId>
-        <version>${protobuf.version}</version>
+        <version>${protobuf-util.version}</version>
       </dependency>
       <dependency>
         <groupId>io.jaegertracing</groupId>

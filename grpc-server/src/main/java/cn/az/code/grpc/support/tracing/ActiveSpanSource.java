@@ -1,11 +1,11 @@
-package cn.az.code.grpc.support;
+package cn.az.code.grpc.support.tracing;
 
 import io.opentracing.Span;
 
 /**
  * An interface that defines how to get the current active span
  *
- * @author ycpang
+ * @author haru
  * @since 2021-09-15 12:13
  */
 public interface ActiveSpanSource {

@@ -1,9 +1,9 @@
-package cn.az.code.grpc.support;
+package cn.az.code.grpc.support.tracing;
 
 import io.grpc.MethodDescriptor;
 
 /**
- * @author ycpang
+ * @author haru
  * @since 2021-09-15 11:58
  */
 public interface OperationNameConstructor {

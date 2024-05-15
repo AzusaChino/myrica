@@ -1,4 +1,4 @@
-package cn.az.code.grpc.hello.proto;
+package cn.az.code.grpc.protos.echo;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -15,23 +15,23 @@ public final class HelloServiceGrpc {
     public static final String SERVICE_NAME = "hello.HelloService";
 
     // Static method descriptors that strictly reflect the proto.
-    private static volatile io.grpc.MethodDescriptor<cn.az.code.grpc.hello.proto.Request, cn.az.code.grpc.hello.proto.Response> getSayHelloMethod;
+    private static volatile io.grpc.MethodDescriptor<Request, Response> getSayHelloMethod;
 
     @io.grpc.stub.annotations.RpcMethod(fullMethodName = SERVICE_NAME + '/'
-            + "SayHello", requestType = cn.az.code.grpc.hello.proto.Request.class, responseType = cn.az.code.grpc.hello.proto.Response.class, methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<cn.az.code.grpc.hello.proto.Request, cn.az.code.grpc.hello.proto.Response> getSayHelloMethod() {
-        io.grpc.MethodDescriptor<cn.az.code.grpc.hello.proto.Request, cn.az.code.grpc.hello.proto.Response> getSayHelloMethod;
+            + "SayHello", requestType = Request.class, responseType = Response.class, methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<Request, Response> getSayHelloMethod() {
+        io.grpc.MethodDescriptor<Request, Response> getSayHelloMethod;
         if ((getSayHelloMethod = HelloServiceGrpc.getSayHelloMethod) == null) {
             synchronized (HelloServiceGrpc.class) {
                 if ((getSayHelloMethod = HelloServiceGrpc.getSayHelloMethod) == null) {
-                    HelloServiceGrpc.getSayHelloMethod = getSayHelloMethod = io.grpc.MethodDescriptor.<cn.az.code.grpc.hello.proto.Request, cn.az.code.grpc.hello.proto.Response>newBuilder()
+                    HelloServiceGrpc.getSayHelloMethod = getSayHelloMethod = io.grpc.MethodDescriptor.<Request, Response>newBuilder()
                             .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
                             .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SayHello"))
                             .setSampledToLocalTracing(true)
                             .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                    cn.az.code.grpc.hello.proto.Request.getDefaultInstance()))
+                                    Request.getDefaultInstance()))
                             .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                    cn.az.code.grpc.hello.proto.Response.getDefaultInstance()))
+                                    Response.getDefaultInstance()))
                             .setSchemaDescriptor(new HelloServiceMethodDescriptorSupplier("SayHello"))
                             .build();
                 }
@@ -91,8 +91,8 @@ public final class HelloServiceGrpc {
         /**
          *
          */
-        public void sayHello(cn.az.code.grpc.hello.proto.Request request,
-                io.grpc.stub.StreamObserver<cn.az.code.grpc.hello.proto.Response> responseObserver) {
+        public void sayHello(Request request,
+                             io.grpc.stub.StreamObserver<Response> responseObserver) {
             io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSayHelloMethod(), responseObserver);
         }
 
@@ -102,7 +102,7 @@ public final class HelloServiceGrpc {
                     .addMethod(
                             getSayHelloMethod(),
                             io.grpc.stub.ServerCalls.asyncUnaryCall(
-                                    new MethodHandlers<cn.az.code.grpc.hello.proto.Request, cn.az.code.grpc.hello.proto.Response>(
+                                    new MethodHandlers<Request, Response>(
                                             this, METHODID_SAY_HELLO)))
                     .build();
         }
@@ -126,8 +126,8 @@ public final class HelloServiceGrpc {
         /**
          *
          */
-        public void sayHello(cn.az.code.grpc.hello.proto.Request request,
-                io.grpc.stub.StreamObserver<cn.az.code.grpc.hello.proto.Response> responseObserver) {
+        public void sayHello(Request request,
+                             io.grpc.stub.StreamObserver<Response> responseObserver) {
             io.grpc.stub.ClientCalls.asyncUnaryCall(
                     getChannel().newCall(getSayHelloMethod(), getCallOptions()), request, responseObserver);
         }
@@ -152,7 +152,7 @@ public final class HelloServiceGrpc {
         /**
          *
          */
-        public cn.az.code.grpc.hello.proto.Response sayHello(cn.az.code.grpc.hello.proto.Request request) {
+        public Response sayHello(Request request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
                     getChannel(), getSayHelloMethod(), getCallOptions(), request);
         }
@@ -176,8 +176,8 @@ public final class HelloServiceGrpc {
         /**
          *
          */
-        public com.google.common.util.concurrent.ListenableFuture<cn.az.code.grpc.hello.proto.Response> sayHello(
-                cn.az.code.grpc.hello.proto.Request request) {
+        public com.google.common.util.concurrent.ListenableFuture<Response> sayHello(
+                Request request) {
             return io.grpc.stub.ClientCalls.futureUnaryCall(
                     getChannel().newCall(getSayHelloMethod(), getCallOptions()), request);
         }
@@ -203,8 +203,8 @@ public final class HelloServiceGrpc {
         public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
             switch (methodId) {
                 case METHODID_SAY_HELLO:
-                    serviceImpl.sayHello((cn.az.code.grpc.hello.proto.Request) request,
-                            (io.grpc.stub.StreamObserver<cn.az.code.grpc.hello.proto.Response>) responseObserver);
+                    serviceImpl.sayHello((Request) request,
+                            (io.grpc.stub.StreamObserver<Response>) responseObserver);
                     break;
                 default:
                     throw new AssertionError();
@@ -229,7 +229,7 @@ public final class HelloServiceGrpc {
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-            return cn.az.code.grpc.hello.proto.Hello.getDescriptor();
+            return Hello.getDescriptor();
         }
 
         @java.lang.Override

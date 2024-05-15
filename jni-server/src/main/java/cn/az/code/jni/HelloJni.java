@@ -2,6 +2,8 @@ package cn.az.code.jni;
 
 import cn.az.code.jni.support.JniDeploy;
 
+import java.io.IOException;
+
 /**
  * JNI Demo Application
  * 
@@ -11,7 +13,11 @@ import cn.az.code.jni.support.JniDeploy;
 public class HelloJni {
 
     static {
-        JniDeploy.getInstance().deploy();
+        try {
+            JniDeploy.deploy();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         // load the so library
         System.loadLibrary("myrica");
     }

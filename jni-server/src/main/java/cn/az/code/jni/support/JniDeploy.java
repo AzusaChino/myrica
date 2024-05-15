@@ -1,36 +1,25 @@
 package cn.az.code.jni.support;
 
-import java.io.File;
-import java.io.InputStream;
-
+import cn.az.code.jni.consts.CommonConstants;
 import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.ClassPathResource;
 
-import cn.az.code.jni.consts.CommonConsts;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Helper (deploy so files to current directory)
  */
-public class JniDeploy {
+public final class JniDeploy {
 
-    private static final JniDeploy INSTANCE = new JniDeploy();
-
-    private JniDeploy() {
-    }
-
-    public static JniDeploy getInstance() {
-        return INSTANCE;
-    }
-
-    public void deploy() {
-        File libFolder = new File("./");
-        File helloLib = new File(libFolder.getPath(), CommonConsts.LIB_MYRICA);
+    public static void deploy() throws IOException {
+        File libFolder = new File(".");
+        File helloLib = new File(libFolder.getPath(), CommonConstants.LIB_MYRICA);
         if (!helloLib.exists()) {
-            ClassPathResource cpr = new ClassPathResource(CommonConsts.LIB_MYRICA);
+            ClassPathResource cpr = new ClassPathResource(CommonConstants.LIB_MYRICA);
             try (InputStream is = cpr.getInputStream()) {
                 FileUtils.copyInputStreamToFile(is, helloLib);
-            } catch (Exception e) {
-                throw new RuntimeException("fail to deploy so libraries", e);
             }
         }
     }

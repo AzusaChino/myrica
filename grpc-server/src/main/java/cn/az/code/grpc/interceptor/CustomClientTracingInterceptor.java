@@ -1,8 +1,7 @@
 package cn.az.code.grpc.interceptor;
 
-import cn.az.code.grpc.support.ActiveSpanSource;
-import cn.az.code.grpc.support.OperationNameConstructor;
-import com.google.common.collect.ImmutableMap;
+import cn.az.code.grpc.support.tracing.ActiveSpanSource;
+import cn.az.code.grpc.support.tracing.OperationNameConstructor;
 import io.grpc.CallOptions;
 import io.grpc.Channel;
 import io.grpc.ClientCall;
@@ -18,19 +17,21 @@ import io.opentracing.Span;
 import io.opentracing.Tracer;
 import io.opentracing.propagation.Format;
 import io.opentracing.propagation.TextMap;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
  * An interceptor that applies tracing via OpenTracing to all client requests.
  *
- * @author ycpang
+ * @author haru
  * @since 2021-09-15 12:08
  */
 public class CustomClientTracingInterceptor implements ClientInterceptor {
@@ -51,9 +52,9 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
         this.activeSpanSource = ActiveSpanSource.GRPC_CONTEXT;
     }
 
-    public CustomClientTracingInterceptor(Tracer tracer, OperationNameConstructor operationNameConstructor,
-                                          boolean streaming,
-                                          boolean verbose, Set<ClientRequestAttribute> tracedAttributes, ActiveSpanSource activeSpanSource) {
+    private CustomClientTracingInterceptor(Tracer tracer, OperationNameConstructor operationNameConstructor,
+                                           boolean streaming, boolean verbose,
+                                           Set<ClientRequestAttribute> tracedAttributes, ActiveSpanSource activeSpanSource) {
         this.tracer = tracer;
         this.operationNameConstructor = operationNameConstructor;
         this.streaming = streaming;
@@ -133,8 +134,6 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
                         span.setTag("grpc.method_type", method.getType().toString());
                     }
                     break;
-                case HEADERS:
-                    break;
                 default:
                     break;
             }
@@ -158,6 +157,7 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
                         headers.put(headerKey, value);
                     }
 
+                    @NonNull
                     @Override
                     public Iterator<Map.Entry<String, String>> iterator() {
                         throw new UnsupportedOperationException(
@@ -171,7 +171,7 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
                     @Override
                     public void onHeaders(Metadata headers) {
                         if (verbose) {
-                            span.log(ImmutableMap.of("Response headers received", headers.toString()));
+                            span.log(Map.of("Response headers received", headers.toString()));
                         }
                         delegate().onHeaders(headers);
                     }
@@ -190,8 +190,7 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
                             if (status.getCode().value() == 0) {
                                 span.log("Call closed");
                             } else {
-                                span.log(ImmutableMap.of("Call failed",
-                                    Objects.requireNonNull(status.getDescription(), "")));
+                                span.log(Map.of("Call failed", Optional.ofNullable(status.getDescription()).orElse("")));
                             }
                         }
                         span.finish();
@@ -208,7 +207,7 @@ public class CustomClientTracingInterceptor implements ClientInterceptor {
                 if (cause == null) {
                     span.log(errorMessage);
                 } else {
-                    span.log(ImmutableMap.of(errorMessage, cause.getMessage()));
+                    span.log(Map.of(errorMessage, cause.getMessage()));
                 }
                 delegate().cancel(message, cause);
             }

@@ -14,7 +14,7 @@
             "type": "java",
             "name": "Launch GrpcApplication",
             "request": "launch",
-            "mainClass": "cn.az.code.grpc.GrpcApplication",
+            "mainClass": "jp.haru.myrica.GrpcApplication",
             "projectName": "grpc-server"
         },
         {

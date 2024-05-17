@@ -4,5 +4,12 @@
         "hello-jni.h": "c",
         "iostream": "cpp"
     },
-    "cmake.sourceDirectory": "${workspaceFolder}/libmyrica"
+    "cmake.sourceDirectory": "${workspaceFolder}/libmyrica",
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-21",
+            "path": "/root/.local/share/graalvm-jdk-21.0.3"
+        }
+    ],
+    "java.compile.nullAnalysis.mode": "disabled"
 }

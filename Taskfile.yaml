@@ -1,7 +1,17 @@
 version: "3"
 
+dotenv:
+  - "project.env"
+
 tasks:
   lib:
     cmds:
-      - cd jni-server/libmyrica
-      - mkdir -p build && cd build && make ../ && make install
+      - cd libmyrica
+      - cmake && make
+  native:
+    cmds:
+      - mvn -Pnative spring-boot:build-image -DskipTests
+  version:
+    cmds:
+      - "mvn versions:set -DnewVersion=${VERSION}"
+      - mvn versions:commit
